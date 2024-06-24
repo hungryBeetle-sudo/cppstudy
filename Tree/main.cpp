@@ -8,20 +8,23 @@ class Node{
 	Node* right;
 	
 	void addChildNode(int nodeValue){
-		if(nodeValue < this->nodeValue){
+		int diff = nodeValue - this->nodeValue;
+
+		if(diff < 0){ 
 			if(this->left == nullptr){ this->left = new Node(nodeValue); }
 			else{ this->left->addChildNode(nodeValue); }
 		}
-		else{
+		else if(diff > 0){ 
 			if(this->right == nullptr){ this->right = new Node(nodeValue); }
 			else{ this->right->addChildNode(nodeValue); }
 		}
+		else{ std::cout << nodeValue << " has already been added."; }
 	}
 };
 
 class Tree{
-	Tree(int nodeValue): root{new Node(nodeValue)}{}
 	public:
+	Tree(int nodeValue): root{new Node(nodeValue)}{}
 	Node* root;
 
 	void addNode(int newValue){
